@@ -41,7 +41,7 @@ sub query {
         query => $query
     );
 
-    $query = lc($query);
+    $query = lc($query->query);
 
     my $start = time;
     my %items;
@@ -89,7 +89,7 @@ sub query {
     foreach my $s (@sorted_keys) {
         push(@sorted, $items{$s});
     }
-
+    $results->total_count(scalar(@sorted));
     $results->items(\@sorted);
     $results->elapsed(time - $start);
 

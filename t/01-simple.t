@@ -1,7 +1,10 @@
 use strict;
 use Test::More;
 
+use lib 't/lib';
+
 use Data::SearchEngine;
+use Data::SearchEngine::Query;
 use SearchEngineWee;
 
 my @data = (
@@ -33,16 +36,18 @@ foreach my $prod (@data) {
 }
 
 {
-    my $results = $verifier->query('Fish');
-    cmp_ok($results->query, 'eq', 'Fish', 'query');
-    cmp_ok($results->total_items, '==', 4, '4 items in results');
+    my $query = Data::SearchEngine::Query->new(query => 'Fish');
+    my $results = $verifier->query($query);
+    cmp_ok($results->query->query, 'eq', 'Fish', 'query');
+    cmp_ok($results->total_count, '==', 4, '4 items in results');
     cmp_ok($results->get(0)->score, '==', 2, 'score is 2');
 }
 
 {
-    my $results = $verifier->query('fish blue');
-    cmp_ok($results->query, 'eq', 'fish blue', 'query');
-    cmp_ok($results->total_items, '==', 4, '4 items in results');
+    my $query = Data::SearchEngine::Query->new(query => 'fish blue');
+    my $results = $verifier->query($query);
+    cmp_ok($results->query->query, 'eq', 'fish blue', 'query');
+    cmp_ok($results->total_count, '==', 4, '4 items in results');
 
     my $first = $results->get(0);
     cmp_ok($first->score, '==', 4, 'high score is 4');

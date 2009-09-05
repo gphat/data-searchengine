@@ -1,6 +1,8 @@
 use strict;
 use Test::More;
 
+use lib 't/lib';
+
 use Data::SearchEngine::Query;
 
 my $query = Data::SearchEngine::Query->new(

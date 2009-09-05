@@ -26,7 +26,7 @@ has query => (
     required => 1,
 );
 has total_count => (
-    is => 'ro',
+    is => 'rw',
     isa => 'Int',
     default => 0
 );
@@ -102,9 +102,10 @@ Appends an Item onto the end of this Results object's item list.
 
 Gets the item at the specified index.
 
-=head total_items
+=head total_count
 
-Returns the total number of items 
+Returns the total number of items found by the query, not just how many where
+returned (which is influenced by count and page).
 
 =head1 AUTHOR
 

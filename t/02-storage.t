@@ -1,7 +1,10 @@
 use strict;
 use Test::More;
 
+use lib 't/lib';
+
 use Data::SearchEngine;
+use Data::SearchEngine::Query;
 use SearchEngineWee;
 
 my @data = (
@@ -33,10 +36,11 @@ foreach my $prod (@data) {
 }
 
 {
-    my $results = $verifier->query('Fish');
+    my $query = Data::SearchEngine::Query->new(query => 'Fish');
+    my $results = $verifier->query($query);
     my $ser = $results->freeze;
     my $results2 = Data::SearchEngine::Results->thaw($ser);
-    cmp_ok($results->total_items, '==', $results2->total_items, 'total_items');
+    cmp_ok($results->total_count, '==', $results2->total_count, 'total_count');
 }
 
 done_testing;
