@@ -10,7 +10,8 @@ __END__
 
 =head1 NAME
 
-Data::SearchEngine::Modifiable - A role for search engines with an updateable index.
+Data::SearchEngine::Modifiable - A role for search engines with an updateable
+index.
 
 =head1 SYNOPSIS
 
@@ -43,7 +44,7 @@ Cory G Watson, C<< <gphat at cpan.org> >>
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2009 Cold Hard Code, LLC
+Copyright 2009 Cory G Watson
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of either: the GNU General Public License as published

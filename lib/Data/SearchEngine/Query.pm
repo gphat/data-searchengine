@@ -4,27 +4,32 @@ use MooseX::Storage;
 
 with Storage(format => 'JSON', io => 'File');
 
+use Data::SearchEngine::Meta::Attribute::Trait::Digestable;
 use Digest::SHA1;
 
 has count => (
+    traits => [qw(Digestable)],
     is => 'ro',
     isa => 'Int',
     default => 10
 );
 
 has order => (
+    traits => [qw(Digestable)],
     is => 'ro',
     isa => 'Str',
     predicate => 'has_order'
 );
 
 has page => (
+    traits => [qw(Digestable)],
     is => 'ro',
     isa => 'Int',
     default => 1
 );
 
 has query => (
+    traits => [qw(Digestable)],
     is => 'ro',
     isa => 'Str',
     required => 1
@@ -34,12 +39,24 @@ sub digest {
     my $self = shift;
 
     my $digester = Digest::SHA1->new;
-    $digester->add($self->count);
-    if($self->has_order) {
-        $digester->add($self->order);
+
+    my $attributes = $self->meta->get_attribute_map;
+    foreach my $aname (keys(%{ $attributes })) {
+        my $attr = $attributes->{$aname};
+
+        next unless $attr->does('Digest::SearchEngine::Meta::Attribute::Trait::Digestable');
+
+        if($attr->has_digest_value) {
+            $digester->add(lc($attr->digest_value));
+        } else {
+            my $reader = $attr->get_read_method;
+            my $val = $attr->$reader;
+            if(defined($val)) {
+                $digester->add(lc($val));
+            }
+        }
+
     }
-    $digester->add($self->page);
-    $digester->add(lc($self->query));
     return $digester->b64digest;
 }
 
@@ -51,35 +68,17 @@ __END__
 
 =head1 NAME
 
-Data::Verifier::Query - Query to pass to an engine.
+Data::SearchEngine::Query - Query to pass to an engine.
 
 =head1 SYNOPSIS
 
 The query object has some common attributes one would expect when performing
-a search.  It has the added benefit of producing a digest that can be used
+a search. It has the added benefit of producing a digest that can be used
 with L<Data::SearchEngine::Results> ability to serialize to implement caching.
 
-Since your query may have different information, it is recommended that you
-subclass this class and add whatever attributes you need.  Keep in mind,
-however, that you will need to implement your own C<digest> method if you
-add any new attributes.
-
-    sub digest {
-        my $self = shift;
-
-        my $digester = Digest::SHA1->new;
-        $digester->add($self->count);
-        if($self->has_order) {
-            $digester->add($self->order);
-        }
-        $digester->add($self->page);
-        $digester->add(lc($self->query));
-        return $digester->b64digest;
-    }
-
-Adding a new attribute or two is as simple as copying the above code and
-adding them to the C<$digester> above so that they contribute to the
-uniqueness of the query
+If you add new attributes to a subclass, be sure and add the Digestable
+trait to any attributes you want to be included in the digest as document in
+L<Data::SearchEngine::Meta::Attribute::Trait::Digestable>.
 
 =head1 ATTRIBUTES
 
@@ -98,6 +97,13 @@ Which page of results to show.
 =head query
 
 The query string to search for.
+
+=head1 METHODS
+
+=head2 digest
+
+Returns a unique digest identifying this Query.  Useful as a key when
+caching.
 
 =head1 AUTHOR
 

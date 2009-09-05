@@ -15,7 +15,7 @@ has items => (
     isa => 'ArrayRef[Data::SearchEngine::Item]',
     default => sub { [] },
     provides => {
-        count   => 'total_items',
+        count   => 'count',
         get     => 'get',
         push    => 'add',
     }
@@ -24,6 +24,11 @@ has query => (
     is => 'rw',
     isa => 'Data::SearchEngine::Query',
     required => 1,
+);
+has total_count => (
+    is => 'ro',
+    isa => 'Int',
+    default => 0
 );
 
 __PACKAGE__->meta->make_immutable;
@@ -34,7 +39,7 @@ __END__
 
 =head1 NAME
 
-Data::Verifier::Results - Results of a Data::SearchEngine serach
+Data::SearchEngine::Results - Results of a Data::SearchEngine serach
 
 =head1 SYNOPSIS
 
@@ -48,9 +53,13 @@ C<thaw> thanks to L<MooseX::Storage>.
     use Time::HiRes;
 
     sub query {
-        # boring implementation
+
+        # boring, search specific implementation
         
-        my $results = Data::SearchEngine::Results->new(query => $query);
+        my $results = Data::SearchEngine::Results->new(
+            query       => $query
+            total_count => $total
+        );
 
         my $start = time;
         foreach $product (@sorted_products) {
