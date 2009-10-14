@@ -1,7 +1,7 @@
 package Data::SearchEngine;
 use Moose::Role;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 requires qw(query);
 
@@ -22,7 +22,7 @@ classes and roles that you can use to wrap a search implementation.  The net
 result will be an easily swappable backend with a common set of features, such
 as serialize of results for use with a cache.
 
-=head2 Step 2 - Extend the Query
+=head2 Step 1 - Extend the Query
 
 Subclass the L<Data::SearchEngine::Query> object and add attributes that are
 needed for your implementation.  Be sure to use the Digestable trait for any

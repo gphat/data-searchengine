@@ -1,5 +1,8 @@
 Revision history for Data-SearchEngine
 
+0.07
+  * Fix POD typo
+
 0.06
   * Add post_check key
 
