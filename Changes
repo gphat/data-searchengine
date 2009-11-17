@@ -1,32 +1,4 @@
 Revision history for Data-SearchEngine
 
-0.07
-  * Fix POD typo
-
-0.06
-  * Add post_check key
-
-0.05
-  * Add dependent key for creating dependent fields
-  * Result
-    * Add merge method that adds the supplied result to this one
-    * Add is_valid, valid_count and valids
-  * Rejigger most is_* methods to return more appropriate values
-
-0.04
-  - Properly set coerced values
-
-0.03
-  - Set invalid values as undef in Results
-  - Add MooseX::Storage to Results can be serialized
-  - Add values attribute to Results
-  - Only validate defined values against types
-  - Enable coercion
-  - Add max_length and min_length
-
-0.02
-  - Honor global filters
-
-0.01    
-  - First version, released on an unsuspecting world.
-
+0.03  November 17, 2009
+  * Add JSON::Any to deps
