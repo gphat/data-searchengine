@@ -11,7 +11,7 @@ has elapsed => (
 has facets => (
     traits => [ 'Hash' ],
     is => 'rw',
-    isa => 'HashRef[Data::SearchEngine::Facet]',
+    isa => 'HashRef[Str]',
     default => sub { {} },
     handles => {
         facet_names=> 'keys',
@@ -99,8 +99,8 @@ Returns an array of all the keys of C<facets>.
 
 =head2 facets
 
-HashRef of L<Data::SearchEngine::Facet>s for this query.  The HashRef is keyed
-by the name of the facet and the values are L<Data::SearchEngine::Facet>s.
+HashRef of facet for this query.  The HashRef is keyed by the name of the
+facet and the values are facet's value.
 
 =head2 items
 

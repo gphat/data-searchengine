@@ -14,6 +14,19 @@ has count => (
     default => 10
 );
 
+has filters => (
+    traits => [ 'Hash' ],
+    is => 'rw',
+    isa => 'HashRef[Str]',
+    default => sub { {} },
+    handles => {
+        filter_names=> 'keys',
+        get_filter => 'get',
+        set_filter => 'set',
+    },
+    predicate => 'has_filters'
+);
+
 has order => (
     traits => [qw(Digestable)],
     is => 'ro',
@@ -86,6 +99,12 @@ L<Data::SearchEngine::Meta::Attribute::Trait::Digestable>.
 
 The number of results this query should return.
 
+=head2 filters
+
+A HashRef of filters used with the query.  The key should be the filter name
+and the value is the filter's value.  Consult the documentation for your
+backend to see how this is used.
+
 =head2 order
 
 The order in which the results should be sorted.
@@ -104,6 +123,22 @@ The query string to search for.
 
 Returns a unique digest identifying this Query.  Useful as a key when
 caching.
+
+=head2 filter_names
+
+Return an array of filter names that are present in this query.
+
+=head2 get_filter
+
+Gets the value for the specified filter.
+
+=head2 has_filters
+
+Predicate that returns true if this query has filters.
+
+=head2 set_filter
+
+Sets the value for the specified filter.
 
 =head1 AUTHOR
 
