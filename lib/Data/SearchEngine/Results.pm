@@ -8,6 +8,17 @@ has elapsed => (
     is => 'rw',
     isa => 'Num'
 );
+has facets => (
+    traits => [ 'Hash' ],
+    is => 'rw',
+    isa => 'HashRef[Data::SearchEngine::Facet]',
+    default => sub { {} },
+    handles => {
+        facet_names=> 'keys',
+        get_facet => 'get',
+        set_facet => 'set',
+    }
+);
 has items => (
     traits => [ 'Array' ],
     is => 'rw',
@@ -82,11 +93,20 @@ C<thaw> thanks to L<MooseX::Storage>.
 
 The time it took to complete this search.
 
-=head items
+=head2 facet_names
+
+Returns an array of all the keys of C<facets>.
+
+=head2 facets
+
+HashRef of L<Data::SearchEngine::Facet>s for this query.  The HashRef is keyed
+by the name of the facet and the values are L<Data::SearchEngine::Facet>s.
+
+=head2 items
 
 The list of L<Data::SearchEngine::Item>s found for the query.
 
-=head query
+=head2 query
 
 The L<Data::SearchEngine::Query> that yielded this Results object.
 
@@ -99,6 +119,14 @@ Appends an Item onto the end of this Results object's item list.
 =head get
 
 Gets the item at the specified index.
+
+=head get_facet
+
+Gets the facet with the specified name.  Returns undef if one does not exist.
+
+=head set_facet
+
+Sets the facet with the specified name.
 
 =head total_count
 
