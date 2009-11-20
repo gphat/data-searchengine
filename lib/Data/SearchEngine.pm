@@ -16,6 +16,35 @@ Data::SearchEngine - A role for search engines and serializable results.
 
 =head1 SYNOPSIS
 
+  package Data::SearchEngine::MySearch;
+
+  with 'Data::SearchEngine';
+
+  sub search {
+    my ($self, $query) = @_;
+
+    # ... your internal search junk
+
+    my $result = Data::SearchEngine::Results->new(
+        query => $query,
+        pager => # ... make a Data::Page
+    );
+
+    foreach my $hit (@hits) {
+        $result->add(Data::SearchEngine::Item->new(
+            values => {
+                name => $hit->name,
+                description => $hit->description
+            },
+            score => $hit->score
+        ));
+    }
+
+    return $result;
+  }
+
+=head1 DESCRIPTION
+
 There are B<lots> of search engine libraries.  Each has a different interface.
 The goal of Data::SearchEngine is to provide a simple, extensive set of
 classes and roles that you can use to wrap a search implementation.  The net
@@ -31,7 +60,7 @@ attributes that contribute to the results to guarantee uniqueness.
 =head2 Step 2 - Wrap a search implementation
 
 The first step is to use the L<Data::SearchEngine> role in a class that wraps
-your search implemenation.  You can find an example in
+your search implementation.  You can find an example in
 L<Data::SearchEngine::Results>.
 
 =head2 Step 3 - Profit!!!
