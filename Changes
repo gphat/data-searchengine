@@ -6,7 +6,8 @@ Revision history for Data-SearchEngine
   * Fix busted POD in Query
   * Change query method to search, which is a way better name.
   * Get rid of MX::AH in favor of native traits.
-  * Add Facet and Result facets.
+  * Add Result facets.
+  * Add Query filters.
 
 0.03  November 17, 2009
   * Add JSON::Any to deps
