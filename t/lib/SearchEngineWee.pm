@@ -34,7 +34,7 @@ sub present {
     return $self->exists($prod->{name});
 }
 
-sub query {
+sub search {
     my ($self, $query) = @_;
 
     my $results = Data::SearchEngine::Results->new(

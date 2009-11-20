@@ -1,4 +1,10 @@
 Revision history for Data-SearchEngine
 
+0.04
+  * Use Data::Page for Results
+  * Fix busted POD in Query
+  * Change query method to search, which is a way better name.
+  * Get rid of MX::AH in favor of native traits.
+
 0.03  November 17, 2009
   * Add JSON::Any to deps

@@ -90,11 +90,11 @@ The number of results this query should return.
 
 The order in which the results should be sorted.
 
-=head page
+=head2 page
 
 Which page of results to show.
 
-=head query
+=head2 query
 
 The query string to search for.
 

@@ -1,6 +1,5 @@
 package Data::SearchEngine::Results;
 use Moose;
-use MooseX::AttributeHelpers;
 use MooseX::Storage;
 
 with Storage(format => 'JSON', io => 'File');
@@ -10,25 +9,24 @@ has elapsed => (
     isa => 'Num'
 );
 has items => (
-    metaclass => 'Collection::Array',
+    traits => [ 'Array' ],
     is => 'rw',
     isa => 'ArrayRef[Data::SearchEngine::Item]',
     default => sub { [] },
-    provides => {
+    handles => {
         count   => 'count',
         get     => 'get',
-        push    => 'add',
+        add     => 'push',
     }
 );
 has query => (
-    is => 'rw',
+    is => 'ro',
     isa => 'Data::SearchEngine::Query',
     required => 1,
 );
-has total_count => (
-    is => 'rw',
-    isa => 'Int',
-    default => 0
+has pager => (
+    is => 'ro',
+    isa => 'Data::Page'
 );
 
 __PACKAGE__->meta->make_immutable;

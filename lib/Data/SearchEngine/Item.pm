@@ -1,6 +1,5 @@
 package Data::SearchEngine::Item;
 use Moose;
-use MooseX::AttributeHelpers;
 use MooseX::Storage;
 
 with Storage(format => 'JSON', io => 'File');
@@ -17,14 +16,14 @@ has score => (
 );
 
 has values => (
-    metaclass => 'Collection::Hash',
-    is        => 'rw',
-    isa       => 'HashRef[Str]',
-    default   => sub { {} },
-    provides  => {
+    traits  => [ 'Hash' ],
+    is      => 'rw',
+    isa     => 'HashRef[Str]',
+    default => sub { {} },
+    handles => {
         keys      => 'keys',
-        get       => 'get_value',
-        set       => 'set_value',
+        get_value => 'get',
+        set_value => 'set',
     },
 );
 

@@ -10,7 +10,6 @@ build_requires 'Test::More' => '0.88';
 requires 'Digest::SHA1' => '2.12';
 requires 'JSON::Any';
 requires 'Moose' => '0.89';
-requires 'MooseX::AttributeHelpers' => '0.21';
 requires 'MooseX::Storage' => '0.21';
 requires 'Time::HiRes' => '1.9719';
 
