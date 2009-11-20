@@ -37,10 +37,10 @@ foreach my $prod (@data) {
 
 {
     my $query = Data::SearchEngine::Query->new(query => 'Fish');
-    my $results = $verifier->query($query);
+    my $results = $verifier->search($query);
     my $ser = $results->freeze;
     my $results2 = Data::SearchEngine::Results->thaw($ser);
-    cmp_ok($results->total_count, '==', $results2->total_count, 'total_count');
+    cmp_ok($results->pager->total_entries, '==', $results2->pager->total_entries, 'total_entries');
 }
 
 done_testing;

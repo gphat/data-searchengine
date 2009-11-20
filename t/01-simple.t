@@ -39,15 +39,15 @@ foreach my $prod (@data) {
     my $query = Data::SearchEngine::Query->new(query => 'Fish');
     my $results = $searcher->search($query);
     cmp_ok($results->query->query, 'eq', 'Fish', 'query');
-    cmp_ok($results->total_count, '==', 4, '4 items in results');
+    cmp_ok($results->pager->total_entries, '==', 4, '4 items in results');
     cmp_ok($results->get(0)->score, '==', 2, 'score is 2');
 }
 
 {
     my $query = Data::SearchEngine::Query->new(query => 'fish blue');
-    my $results = $searcer->search($query);
+    my $results = $searcher->search($query);
     cmp_ok($results->query->query, 'eq', 'fish blue', 'query');
-    cmp_ok($results->total_count, '==', 4, '4 items in results');
+    cmp_ok($results->pager->total_entries, '==', 4, '4 items in results');
 
     my $first = $results->get(0);
     cmp_ok($first->score, '==', 4, 'high score is 4');

@@ -67,7 +67,7 @@ C<thaw> thanks to L<MooseX::Storage>.
         
         my $results = Data::SearchEngine::Results->new(
             query       => $query
-            total_count => $total
+            pager       => Data::Page->new(...)
         );
 
         my $start = time;
@@ -106,6 +106,10 @@ facet and the values are facet's value.
 
 The list of L<Data::SearchEngine::Item>s found for the query.
 
+=head2 pager
+
+The L<Data::Page> for this result.
+
 =head2 query
 
 The L<Data::SearchEngine::Query> that yielded this Results object.
@@ -127,11 +131,6 @@ Gets the facet with the specified name.  Returns undef if one does not exist.
 =head set_facet
 
 Sets the facet with the specified name.
-
-=head total_count
-
-Returns the total number of items found by the query, not just how many where
-returned (which is influenced by count and page).
 
 =head1 AUTHOR
 

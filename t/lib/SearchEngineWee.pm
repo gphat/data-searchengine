@@ -9,11 +9,11 @@ use Data::SearchEngine::Results;
 use Time::HiRes qw(time);
 
 has index => (
-    metaclass => 'Collection::Hash',
+    traits => [ 'Hash' ],
     is        => 'rw',
     isa       => 'HashRef[HashRef]',
     default   => sub { {} },
-    provides  => {
+    handles  => {
         delete  => 'delete',
         exists  => 'exists',
         get     => 'get',
@@ -89,7 +89,7 @@ sub search {
     foreach my $s (@sorted_keys) {
         push(@sorted, $items{$s});
     }
-    $results->total_count(scalar(@sorted));
+    die('Data::Page');
     $results->items(\@sorted);
     $results->elapsed(time - $start);
 
