@@ -35,7 +35,6 @@ has order => (
 );
 
 has page => (
-    traits => [qw(Digestable)],
     is => 'ro',
     isa => 'Int',
     default => 1

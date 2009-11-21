@@ -36,6 +36,8 @@ has query => (
     required => 1,
 );
 has pager => (
+    # XXX Uhm...
+    traits => [ 'DoNotSerialize' ],
     is => 'ro',
     isa => 'Data::Page'
 );

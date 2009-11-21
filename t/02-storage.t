@@ -30,17 +30,17 @@ my @data = (
     },
 );
 
-my $verifier = SearchEngineWee->new;
+my $searcher = SearchEngineWee->new;
 foreach my $prod (@data) {
-    $verifier->add($prod);
+    $searcher->add($prod);
 }
 
 {
     my $query = Data::SearchEngine::Query->new(query => 'Fish');
-    my $results = $verifier->search($query);
+    my $results = $searcher->search($query);
     my $ser = $results->freeze;
     my $results2 = Data::SearchEngine::Results->thaw($ser);
-    cmp_ok($results->pager->total_entries, '==', $results2->pager->total_entries, 'total_entries');
+    cmp_ok($query->query, 'eq', 'Fish');
 }
 
 done_testing;

@@ -1,6 +1,7 @@
 package # Hide from CPAN
     SearchEngineWee;
 use Moose;
+use Data::Page;
 
 with ('Data::SearchEngine', 'Data::SearchEngine::Modifiable');
 
@@ -38,7 +39,8 @@ sub search {
     my ($self, $query) = @_;
 
     my $results = Data::SearchEngine::Results->new(
-        query => $query
+        query => $query,
+        pager => Data::Page->new
     );
 
     $query = lc($query->query);
@@ -89,7 +91,8 @@ sub search {
     foreach my $s (@sorted_keys) {
         push(@sorted, $items{$s});
     }
-    die('Data::Page');
+
+    $results->pager->total_entries(scalar(@sorted));
     $results->items(\@sorted);
     $results->elapsed(time - $start);
 
