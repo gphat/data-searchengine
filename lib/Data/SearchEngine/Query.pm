@@ -24,7 +24,12 @@ has filters => (
         get_filter => 'get',
         set_filter => 'set',
     },
-    predicate => 'has_filters'
+    predicate => {
+        'has_filters' => sub {
+            my $self = shift;
+            return scalar(keys(%{ $self->filters }))
+        }
+    }
 );
 
 has order => (

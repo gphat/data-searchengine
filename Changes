@@ -1,5 +1,8 @@
 Revision history for Data-SearchEngine
 
+0.05
+  * Change Query->has_filters to return false unless the hashref has keys
+
 0.04
   * POD improvements
   * Use Data::Page for Results
