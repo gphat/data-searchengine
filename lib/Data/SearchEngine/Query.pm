@@ -23,12 +23,7 @@ has filters => (
         filter_names=> 'keys',
         get_filter => 'get',
         set_filter => 'set',
-    },
-    predicate => {
-        'has_filters' => sub {
-            my $self = shift;
-            return scalar(keys(%{ $self->filters }))
-        }
+        has_filters => 'count'
     }
 );
 
