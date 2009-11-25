@@ -5,7 +5,7 @@ use MooseX::Storage;
 with Storage(format => 'JSON', io => 'File');
 
 use Data::SearchEngine::Meta::Attribute::Trait::Digestable;
-use Digest::SHA1;
+use Digest::MD5;
 
 has count => (
     traits => [qw(Digestable)],
@@ -15,7 +15,7 @@ has count => (
 );
 
 has filters => (
-    traits => [ 'Hash' ],
+    traits => [ 'Hash', 'Digestable' ],
     is => 'rw',
     isa => 'HashRef[Str]',
     default => sub { {} },
@@ -50,7 +50,7 @@ has query => (
 sub digest {
     my $self = shift;
 
-    my $digester = Digest::SHA1->new;
+    my $digester = Digest::MD5->new;
 
     my $attributes = $self->meta->get_attribute_map;
     foreach my $aname (keys(%{ $attributes })) {

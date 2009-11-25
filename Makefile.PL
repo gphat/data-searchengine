@@ -7,8 +7,8 @@ license  'perl';
 
 build_requires 'Test::More' => '0.88';
 
-requires 'Data::Page';
-requires 'Digest::SHA1' => '2.12';
+requires 'Data::Paginator';
+requires 'Digest::MD5' => '2.39';
 requires 'JSON::Any';
 requires 'Moose' => '0.89';
 requires 'MooseX::Storage' => '0.21';

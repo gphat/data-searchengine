@@ -1,5 +1,12 @@
 Revision history for Data-SearchEngine
 
+0.06
+  * Switch to an MD5 digest as it is faster.
+  * POD updates
+  * Digestable filters
+  * Switch to Data::Paginator
+  * Improve tests
+
 0.05
   * Change Query->has_filters to return false unless the hashref has keys
 

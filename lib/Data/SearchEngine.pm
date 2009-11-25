@@ -12,7 +12,7 @@ __END__
 
 =head1 NAME
 
-Data::SearchEngine - A role for search engines and serializable results.
+Data::SearchEngine - A role for search engine abstraction.
 
 =head1 SYNOPSIS
 
@@ -48,30 +48,30 @@ Data::SearchEngine - A role for search engines and serializable results.
 There are B<lots> of search engine libraries.  Each has a different interface.
 The goal of Data::SearchEngine is to provide a simple, extensive set of
 classes and roles that you can use to wrap a search implementation.  The net
-result will be an easily swappable backend with a common set of features, such
-as serialize of results for use with a cache.
+result will be an easily swappable backend with a common set of features.
 
 =head2 Step 1 - Extend the Query
 
-Subclass the L<Data::SearchEngine::Query> object and add attributes that are
-needed for your implementation.  Be sure to use the Digestable trait for any
-attributes that contribute to the results to guarantee uniqueness.
+If you have specific attributes that you need for your query, subclass the
+L<Data::SearchEngine::Query> object and add the attributes.  This part is
+optional.
 
 =head2 Step 2 - Wrap a search implementation
 
-The first step is to use the L<Data::SearchEngine> role in a class that wraps
-your search implementation.  You can find an example in
-L<Data::SearchEngine::Results>.
+Next use the L<Data::SearchEngine> role in a class that wraps your search
+implementation. You can find an example in L<Data::SearchEngine::Results>.
 
 =head2 Step 3 - Profit!!!
 
-Optionally setup a caching implementation using Query's C<digest> method and
-the C<freeze>/C<thaw> methods from Results.
+!!!
 
-=head1 WARNING
+=head1 DIGESTS
 
-This module is under very active development and the API may change.  Consider
-this a development release and please send along sugguestions!
+Data::SearchEngine provides a Digestable trait that can be applied to
+attributes of C<Query>.  Attributes with this trait will be added to
+a base64 MD5 digest to produce a unique key identifying this query.  You can
+then serialize the Result using L<MooseX::Storage> and store it under the
+digest of the Query for caching.
 
 =head1 AUTHOR
 

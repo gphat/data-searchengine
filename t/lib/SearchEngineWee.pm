@@ -1,11 +1,11 @@
 package # Hide from CPAN
     SearchEngineWee;
 use Moose;
-use Data::Page;
 
 with ('Data::SearchEngine', 'Data::SearchEngine::Modifiable');
 
 use Data::SearchEngine::Item;
+use Data::SearchEngine::Paginator;
 use Data::SearchEngine::Results;
 use Time::HiRes qw(time);
 
@@ -36,14 +36,9 @@ sub present {
 }
 
 sub search {
-    my ($self, $query) = @_;
+    my ($self, $oquery) = @_;
 
-    my $results = Data::SearchEngine::Results->new(
-        query => $query,
-        pager => Data::Page->new
-    );
-
-    $query = lc($query->query);
+    my $query = lc($oquery->query);
 
     my $start = time;
     my %items;
@@ -92,11 +87,15 @@ sub search {
         push(@sorted, $items{$s});
     }
 
-    $results->pager->total_entries(scalar(@sorted));
-    $results->items(\@sorted);
-    $results->elapsed(time - $start);
-
-    return $results;
+    return Data::SearchEngine::Results->new(
+        query => $oquery,
+        pager => Data::SearchEngine::Paginator->new(
+            entries_per_page => 1,
+            total_entries => scalar(@sorted)
+        ),
+        items => \@sorted,
+        elapsed => time - $start
+    );
 }
 
 sub remove {

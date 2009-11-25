@@ -36,10 +36,8 @@ has query => (
     required => 1,
 );
 has pager => (
-    # XXX Uhm...
-    traits => [ 'DoNotSerialize' ],
     is => 'ro',
-    isa => 'Data::Page'
+    isa => 'Data::SearchEngine::Paginator'
 );
 
 __PACKAGE__->meta->make_immutable;

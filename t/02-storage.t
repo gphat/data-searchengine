@@ -40,7 +40,8 @@ foreach my $prod (@data) {
     my $results = $searcher->search($query);
     my $ser = $results->freeze;
     my $results2 = Data::SearchEngine::Results->thaw($ser);
-    cmp_ok($query->query, 'eq', 'Fish');
+    cmp_ok($results->query->query, 'eq', 'Fish', 'query');
+    cmp_ok($results2->pager->total_entries, '==', 4, 'pager total_entries');
 }
 
 done_testing;
