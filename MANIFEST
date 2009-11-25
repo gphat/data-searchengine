@@ -12,6 +12,7 @@ lib/Data/SearchEngine.pm
 lib/Data/SearchEngine/Item.pm
 lib/Data/SearchEngine/Meta/Attribute/Trait/Digestable.pm
 lib/Data/SearchEngine/Modifiable.pm
+lib/Data/SearchEngine/Paginator.pm
 lib/Data/SearchEngine/Query.pm
 lib/Data/SearchEngine/Results.pm
 lib/Moose/Meta/Attribute/Custom/Trait/Digestable.pm
