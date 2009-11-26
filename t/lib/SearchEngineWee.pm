@@ -2,11 +2,13 @@ package # Hide from CPAN
     SearchEngineWee;
 use Moose;
 
-with ('Data::SearchEngine', 'Data::SearchEngine::Modifiable');
+with (
+    'Data::SearchEngine', 'Data::SearchEngine::Modifiable'
+);
 
 use Data::SearchEngine::Item;
 use Data::SearchEngine::Paginator;
-use Data::SearchEngine::Results;
+use SEWeeResults;
 use Time::HiRes qw(time);
 
 has index => (
@@ -87,7 +89,7 @@ sub search {
         push(@sorted, $items{$s});
     }
 
-    return Data::SearchEngine::Results->new(
+    return SEWeeResults->new(
         query => $oquery,
         pager => Data::SearchEngine::Paginator->new(
             entries_per_page => 1,

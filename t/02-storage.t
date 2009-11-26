@@ -39,7 +39,7 @@ foreach my $prod (@data) {
     my $query = Data::SearchEngine::Query->new(query => 'Fish');
     my $results = $searcher->search($query);
     my $ser = $results->freeze;
-    my $results2 = Data::SearchEngine::Results->thaw($ser);
+    my $results2 = SEWeeResults->thaw($ser);
     cmp_ok($results->query->query, 'eq', 'Fish', 'query');
     cmp_ok($results2->pager->total_entries, '==', 4, 'pager total_entries');
 }

@@ -8,17 +8,6 @@ has elapsed => (
     is => 'rw',
     isa => 'Num'
 );
-has facets => (
-    traits => [ 'Hash' ],
-    is => 'rw',
-    isa => 'HashRef[Any]',
-    default => sub { {} },
-    handles => {
-        facet_names=> 'keys',
-        get_facet => 'get',
-        set_facet => 'set',
-    }
-);
 has items => (
     traits => [ 'Array' ],
     is => 'rw',
@@ -93,15 +82,6 @@ C<thaw> thanks to L<MooseX::Storage>.
 
 The time it took to complete this search.
 
-=head2 facet_names
-
-Returns an array of all the keys of C<facets>.
-
-=head2 facets
-
-HashRef of facet for this query.  The HashRef is keyed by the name of the
-facet and the values are facet's value.
-
 =head2 items
 
 The list of L<Data::SearchEngine::Item>s found for the query.
@@ -123,14 +103,6 @@ Appends an Item onto the end of this Results object's item list.
 =head get
 
 Gets the item at the specified index.
-
-=head get_facet
-
-Gets the facet with the specified name.  Returns undef if one does not exist.
-
-=head set_facet
-
-Sets the facet with the specified name.
 
 =head1 AUTHOR
 

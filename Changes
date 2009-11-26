@@ -1,5 +1,9 @@
 Revision history for Data-SearchEngine
 
+0.07
+  * Break out facet functionality to a Facted role
+  * Update to latest Data::Paginator
+
 0.06
   * Switch to an MD5 digest as it is faster.
   * POD updates

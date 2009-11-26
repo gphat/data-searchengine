@@ -7,7 +7,7 @@ license  'perl';
 
 build_requires 'Test::More' => '0.88';
 
-requires 'Data::Paginator';
+requires 'Data::Paginator' => '0.03';
 requires 'Digest::MD5' => '2.39';
 requires 'JSON::Any';
 requires 'Moose' => '0.89';
