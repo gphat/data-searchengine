@@ -2,7 +2,7 @@ package Data::SearchEngine::Results;
 use Moose;
 use MooseX::Storage;
 
-with Storage(format => 'JSON', io => 'File');
+with 'MooseX::Storage::Deferred';
 
 has elapsed => (
     is => 'rw',
@@ -43,8 +43,7 @@ Data::SearchEngine::Results - Results of a Data::SearchEngine serach
 
 The Results object holds the list of items found during a query.  They are
 usually sorted by a score.  This object provides some standard attributes
-you are likely to use, as well as the ability to serialize via C<freeze> and
-C<thaw> thanks to L<MooseX::Storage>.
+you are likely to use.
 
     use Data::SearchEngine::Item;
     use Data::SearchEngine::Results;
@@ -75,6 +74,15 @@ C<thaw> thanks to L<MooseX::Storage>.
 
         return $results;
     }
+
+=head1 SERIALIZATION
+
+This module uses L<MooseX::Storage::Deferred> to provide serialization.  You
+may serialize it thusly:
+
+  my $json = $results->freeze({ format => 'JSON' };
+  # ...
+  my $results = Data::SearchEngine::Results->thaw($json, { format => 'JSON' });
 
 =head1 ATTRIBUTES
 

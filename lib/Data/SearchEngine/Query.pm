@@ -2,7 +2,7 @@ package Data::SearchEngine::Query;
 use Moose;
 use MooseX::Storage;
 
-with Storage(format => 'JSON', io => 'File');
+with 'MooseX::Storage::Deferred';
 
 use Data::SearchEngine::Meta::Attribute::Trait::Digestable;
 use Digest::MD5;

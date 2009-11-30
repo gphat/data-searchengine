@@ -2,7 +2,7 @@ package Data::SearchEngine::Item;
 use Moose;
 use MooseX::Storage;
 
-with Storage(format => 'JSON', io => 'File');
+with 'MooseX::Storage::Deferred';
 
 has id => (
     is => 'rw',
