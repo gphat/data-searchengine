@@ -34,6 +34,14 @@ has order => (
     predicate => 'has_order'
 );
 
+has original_query => (
+    traits => [qw(Digestable)],
+    is => 'ro',
+    isa => 'Str',
+    lazy => 1,
+    default => sub { my $self = shift; return $self->query }
+);
+
 has page => (
     is => 'ro',
     isa => 'Int',
@@ -107,6 +115,13 @@ backend to see how this is used.
 =head2 order
 
 The order in which the results should be sorted.
+
+=head2 original_query
+
+The "original" query that the user searched for.  Provided because some
+backends may need to modify the C<query> attribute to a more palatable form.
+If no value is provided for this attribute then it will assume the same
+value as C<query>.
 
 =head2 page
 

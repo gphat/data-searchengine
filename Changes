@@ -1,5 +1,8 @@
 Revision history for Data-SearchEngine
 
+0.09
+  * Add original_query attribute to Query
+
 0.08
   * Use MooseX::Storage::Deferred
 
