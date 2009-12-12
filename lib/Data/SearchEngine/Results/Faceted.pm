@@ -40,8 +40,8 @@ Provides storage and methods for retrieving facet information.
 
 =head2 facets
 
-HashRef of facet for this query.  The HashRef is keyed by the name of the
-facet and the values are facet's value.
+HashRef of facets for this query.  The HashRef is keyed by the name of the
+facet and the values are the facet's value.
 
 =head1 METHODS
 
