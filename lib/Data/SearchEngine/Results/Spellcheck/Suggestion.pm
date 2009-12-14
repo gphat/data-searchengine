@@ -7,6 +7,12 @@ has 'frequency' => (
     default => 1
 );
 
+has 'original_word' => (
+    is => 'ro',
+    isa => 'Str',
+    required => 1
+);
+
 has 'word' => (
     is => 'ro',
     isa => 'Str',
