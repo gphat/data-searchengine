@@ -1,6 +1,12 @@
 package Data::SearchEngine::Results::Spellcheck;
 use Moose::Role;
 
+has spell_collation => (
+    is => 'rw',
+    isa => 'Str',
+    predicate => 'has_spell_collation'
+);
+
 has spell_frequencies => (
     traits => [ 'Hash' ],
     is => 'rw',
@@ -23,16 +29,6 @@ has spell_suggestions => (
         get_spell_suggestion  => 'get'
     }
 );
-
-sub get_best_suggestions {
-    my ($self) = @_;
-
-    foreach my $word ($self->spell_suggestion_words) {
-
-        my $orig_freq = $self->get_spell_frequency($word);
-        my $high_freq = $orig_freq;
-    }
-}
 
 1;
 
@@ -62,6 +58,12 @@ Data::SearchEngine::Results::Spellcheck - spellcheck role for Spellchecking
 Provides storage and methods for retrieving spellcheck information.
 
 =head1 ATTRIBUTES
+
+=head2 spell_collation
+
+Intended to hold the 'suggested' spelling result from spellchecking.  A search
+for "basebll bat" would likely have a collation of "baseball bat".  It is so
+named as it contains a collation of the best results for the various tokens.
 
 =head2 spell_frequencies
 
