@@ -2,7 +2,7 @@ Revision history for Data-SearchEngine
 
 0.10
   * Add Spellcheck role
-  
+
 0.09
   * Add original_query attribute to Query
   * Fix busted storage test

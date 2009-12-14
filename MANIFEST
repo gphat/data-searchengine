@@ -16,6 +16,8 @@ lib/Data/SearchEngine/Paginator.pm
 lib/Data/SearchEngine/Query.pm
 lib/Data/SearchEngine/Results.pm
 lib/Data/SearchEngine/Results/Faceted.pm
+lib/Data/SearchEngine/Results/Spellcheck.pm
+lib/Data/SearchEngine/Results/Spellcheck/Suggestion.pm
 lib/Moose/Meta/Attribute/Custom/Trait/Digestable.pm
 Makefile.PL
 MANIFEST			This list of files
