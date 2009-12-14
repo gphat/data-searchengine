@@ -1,17 +1,38 @@
 package Data::SearchEngine::Results::Spellcheck;
 use Moose::Role;
 
-has spellchecks => (
+has spell_frequencies => (
     traits => [ 'Hash' ],
     is => 'rw',
-    isa => 'HashRef[Any]',
+    isa => 'HashRef[Num]',
     default => sub { {} },
     handles => {
-        spellcheck_names=> 'keys',
-        set_spellcheck  => 'set',
-        get_spellcheck  => 'get'
+        set_spell_frequency  => 'set',
+        get_spell_frequency  => 'get'
     }
 );
+
+has spell_suggestions => (
+    traits => [ 'Hash' ],
+    is => 'rw',
+    isa => 'HashRef[Data::SearchEngine::Results::Spellcheck::Suggestion]',
+    default => sub { {} },
+    handles => {
+        spell_suggestion_words=> 'keys',
+        set_spell_suggestion  => 'set',
+        get_spell_suggestion  => 'get'
+    }
+);
+
+sub get_best_suggestions {
+    my ($self) = @_;
+
+    foreach my $word ($self->spell_suggestion_words) {
+
+        my $orig_freq = $self->get_spell_frequency($word);
+        my $high_freq = $orig_freq;
+    }
+}
 
 1;
 
@@ -29,7 +50,11 @@ Data::SearchEngine::Results::Spellcheck - spellcheck role for Spellchecking
     
     sub search {
         # do stuff
-        $results->set_spellcheck('popuar', 'popular');
+        $results->set_spell_suggestion('popuar', 
+          Data::SearchEngine::Results::Spellcheck::Suggestion->new(
+            word => 'popular',  # the suggested replacement
+            frequency => 12     # optional, how often it occurs in the index
+          );
     }
 
 =head1 DESCRIPTION
@@ -38,25 +63,38 @@ Provides storage and methods for retrieving spellcheck information.
 
 =head1 ATTRIBUTES
 
-=head2 spellchecks
+=head2 spell_frequencies
+
+Hash containing the original token in as the key and the frequency it occurs
+in the index as the value.  This may not be used by all backends.
+
+=head2 spell_sugguestions
 
 HashRef of spellcheck suggestions for this query.  The HashRef is keyed by the
-word being for which spellcheck suggestions are being provided and the values
-are the suggestions.
+word for which spellcheck suggestions are being provided and the values are
+the suggestions.
 
 =head1 METHODS
 
-=head2 spellcheck_names
+=head2 get_spell_frequency ($word)
 
-Returns an array of all the keys of C<spellchecks>.
+Gets the frequency for the specified word.
 
-=head get_spellcheck
+=head2 get_spell_suggestion ($word)
 
-Gets the spellcheck with the specified name.  Returns undef if one does not exist.
+Gets the suggestion with the specified name.  Returns undef if one does not exist.
 
-=head set_spellcheck
+=head2 set_spell_frequency ($word, $frequency)
 
-Sets the spellcheck with the specified name.
+Sets the frequency for the provided word.
+
+=head2 set_spell_suggestion
+
+Sets the suggestion with the specified name.
+
+=head2 spell_suggestion_words
+
+Returns an array of all the keys of C<suggestions>.
 
 =head1 AUTHOR
 
