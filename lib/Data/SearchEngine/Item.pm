@@ -18,12 +18,12 @@ has score => (
 has values => (
     traits  => [ 'Hash' ],
     is      => 'rw',
-    isa     => 'HashRef[Str]',
+    isa     => 'HashRef[Str|ArrayRef[Str]|Undef]',
     default => sub { {} },
     handles => {
-        keys      => 'keys',
-        get_value => 'get',
-        set_value => 'set',
+        keys        => 'keys',
+        get_value   => 'get',
+        set_value   => 'set',
     },
 );
 
@@ -76,7 +76,7 @@ this item.
 
 Returns the value for the specified key for this item.
 
-=head set_value
+=head2 set_value
 
 Sets the value for the specified key for this item.
 

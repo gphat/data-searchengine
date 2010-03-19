@@ -1,5 +1,9 @@
 Revision history for Data-SearchEngine
 
+0.11
+  * POD fixes
+  * Allow Str or ArrayRef[Str|Undef] for Item values
+
 0.10
   * Add Spellcheck role
 
