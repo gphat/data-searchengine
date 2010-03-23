@@ -1,5 +1,9 @@
 Revision history for Data-SearchEngine
 
+0.12
+  * Swap out deprecated Class::MOP methods used for digest
+  * Add has_filter_like method to Query
+
 0.11
   * POD fixes
   * Allow Str or ArrayRef[Str|Undef] for Item values
