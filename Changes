@@ -1,6 +1,6 @@
 Revision history for Data-SearchEngine
 
-0.13
+0.13    March 23, 2010
   * Remove required flag from Query's query attribute
   * Add has_query predicate to Query
 
