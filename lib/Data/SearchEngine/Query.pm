@@ -52,7 +52,7 @@ has query => (
     traits => [qw(Digestable)],
     is => 'ro',
     isa => 'Str',
-    required => 1
+    predicate => 'has_query'
 );
 
 sub digest {
@@ -162,6 +162,10 @@ Returns true if any of the filter names match the provided subroutine:
 
   $query->set_filter('foo', 'bar');
   $query->has_filter_like(sub { /^fo/ })s; # true!
+
+=head2 has_query
+
+Returns true if this Query has a query string.
 
 =head2 set_filter
 

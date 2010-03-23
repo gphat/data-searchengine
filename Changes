@@ -1,5 +1,9 @@
 Revision history for Data-SearchEngine
 
+0.13
+  * Remove required flag from Query's query attribute
+  * Add has_query predicate to Query
+
 0.12
   * Swap out deprecated Class::MOP methods used for digest
   * Add has_filter_like method to Query
