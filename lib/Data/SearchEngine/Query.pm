@@ -60,9 +60,9 @@ sub digest {
 
     my $digester = Digest::MD5->new;
 
-    my $attributes = $self->meta->get_attribute_map;
-    foreach my $aname (keys(%{ $attributes })) {
-        my $attr = $attributes->{$aname};
+    my @attributes = $self->meta->get_attribute_list;
+    foreach my $aname (@attributes) {
+        my $attr = $self->meta->get_attribute($aname);
 
         next unless $attr->does('Digest::SearchEngine::Meta::Attribute::Trait::Digestable');
 
