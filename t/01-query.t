@@ -30,4 +30,8 @@ my $query3 = Data::SearchEngine::Query->new(
 
 cmp_ok($query3->original_query, 'ne', $query3->query, 'original_query ne query');
 
+$query3->set_filter('foo', 'bar');
+cmp_ok($query3->get_filter('foo'), 'eq', 'bar', 'get_filter');
+ok($query3->has_filter_like(sub { /^fo/ }), 'has_filter_like');
+
 done_testing;

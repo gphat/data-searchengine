@@ -80,6 +80,12 @@ sub digest {
     return $digester->b64digest;
 }
 
+sub has_filter_like {
+    my ($self, $predicate) = @_;
+
+    return grep { $predicate->() } $self->filter_names;
+}
+
 __PACKAGE__->meta->make_immutable;
 
 1;
@@ -149,6 +155,13 @@ Gets the value for the specified filter.
 =head2 has_filters
 
 Predicate that returns true if this query has filters.
+
+=head2 has_filter_like
+
+Returns true if any of the filter names match the provided subroutine:
+
+  $query->set_filter('foo', 'bar');
+  $query->has_filter_like(sub { /^fo/ })s; # true!
 
 =head2 set_filter
 
