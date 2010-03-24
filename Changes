@@ -1,5 +1,11 @@
 Revision history for Data-SearchEngine
 
+0.15
+  * Make query rw
+
+0.14
+  * Allow original_query to be undefined, since query might be
+
 0.13    March 23, 2010
   * Remove required flag from Query's query attribute
   * Add has_query predicate to Query

@@ -1,7 +1,7 @@
 package Data::SearchEngine;
 use Moose::Role;
 
-our $VERSION = '0.13';
+our $VERSION = '0.15';
 
 requires qw(search);
 

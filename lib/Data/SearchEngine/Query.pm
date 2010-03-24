@@ -37,7 +37,7 @@ has order => (
 has original_query => (
     traits => [qw(Digestable)],
     is => 'ro',
-    isa => 'Str',
+    isa => 'Str|Undef',
     lazy => 1,
     default => sub { my $self = shift; return $self->query }
 );
@@ -50,7 +50,7 @@ has page => (
 
 has query => (
     traits => [qw(Digestable)],
-    is => 'ro',
+    is => 'rw',
     isa => 'Str',
     predicate => 'has_query'
 );
