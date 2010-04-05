@@ -30,6 +30,11 @@ has spell_suggestions => (
     }
 );
 
+has spelled_correctly => (
+    is => 'rw',
+    isa => 'Bool',
+);
+
 1;
 
 __END__
@@ -75,6 +80,10 @@ in the index as the value.  This may not be used by all backends.
 HashRef of spellcheck suggestions for this query.  The HashRef is keyed by the
 word for which spellcheck suggestions are being provided and the values are
 the suggestions.
+
+=head2 spelled_correctly
+
+Boolean value to signal to the front end if the query was spelled correctly.
 
 =head1 METHODS
 

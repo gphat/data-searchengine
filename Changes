@@ -1,5 +1,8 @@
 Revision history for Data-SearchEngine
 
+0.16
+  * Add spelled_correctly attribute to Spellcheck role
+
 0.15
   * Make query rw
 
