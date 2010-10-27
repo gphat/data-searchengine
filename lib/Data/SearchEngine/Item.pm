@@ -18,11 +18,11 @@ has score => (
 has values => (
     traits  => [ 'Hash' ],
     is      => 'rw',
-    isa     => 'HashRef[Str|ArrayRef[Str]|Undef]',
+    isa     => 'HashRef[Str|ArrayRef|Undef]',
     default => sub { {} },
     handles => {
         keys        => 'keys',
-        get_value   => 'get',
+        get_values  => 'get',
         set_value   => 'set',
     },
 );
@@ -72,9 +72,9 @@ The score this item earned.
 Returns the keys from the values HashRef, e.g. a list of the value names for
 this item.
 
-=head2 get_value
+=head2 get_values
 
-Returns the value for the specified key for this item.
+Returns the values for the specified key for this item.
 
 =head2 set_value
 

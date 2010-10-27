@@ -1,5 +1,8 @@
 Revision history for Data-SearchEngine
 
+0.17
+  * Change get_value to get_values, and remove Str from ArrayRef
+
 0.16
   * Add spelled_correctly attribute to Spellcheck role
 
