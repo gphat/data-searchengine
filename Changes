@@ -1,5 +1,8 @@
 Revision history for Data-SearchEngine
 
+0.17
+  * Add remove_by_id to Modifiable role.
+
 0.16
   * Add spelled_correctly attribute to Spellcheck role
 

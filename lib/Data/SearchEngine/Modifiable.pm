@@ -1,7 +1,7 @@
 package Data::SearchEngine::Modifiable;
 use Moose::Role;
 
-requires qw(add present remove update);
+requires qw(add present remove remove_by_id update);
 
 no Moose::Role;
 1;
@@ -32,7 +32,12 @@ Returns true if the specified thing is present in the index.
 
 =head2 remove ($thing)
 
-Removes the specified thing from the index.
+Removes the specified thing from the index.  Consult the documentation
+for your specific backend.
+
+=head2 remove_by_id ($id)
+
+Remove a specific thing by id.
 
 =head2 update ($thing)
 

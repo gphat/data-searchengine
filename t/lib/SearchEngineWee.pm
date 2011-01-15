@@ -106,6 +106,20 @@ sub remove {
     $self->delete($prod->{name});
 }
 
+sub remove_by_id {
+	my ($self, $id) = @_;
+
+    foreach my $key ($self->keys) {
+
+        my $prod = $self->get($key);
+		if($prod->{id} eq $id) {
+			$self->delete($key);
+			return 1;
+		}
+	}
+	return 0;
+}
+
 sub update {
     my ($self, $prod) = @_;
 
