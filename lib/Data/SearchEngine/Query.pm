@@ -29,7 +29,7 @@ has filters => (
 
 has order => (
     traits => [qw(Digestable)],
-    is => 'ro',
+    is => 'rw',
     isa => 'Str',
     predicate => 'has_order'
 );
