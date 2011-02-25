@@ -86,9 +86,21 @@ may serialize it thusly:
 
 =head1 ATTRIBUTES
 
+=head2 add ($item)
+
+Add an item to this result.
+
+=head2 count
+
+Count of items in this result.
+
 =head2 elapsed
 
 The time it took to complete this search.
+
+=head2 get ($n)
+
+Get the nth item.
 
 =head2 items
 
