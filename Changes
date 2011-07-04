@@ -1,5 +1,8 @@
 Revision history for Data-SearchEngine
 
+0.21    2011-07-04
+  * Change 'order' to be a Str|HashRef for more complex sorting features.
+
 0.20    2011-07-03
   * Add defaults to Data::SearchEngine
 
