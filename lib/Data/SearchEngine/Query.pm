@@ -50,7 +50,7 @@ Gets the value for the specified filter.
 
 Predicate that returns true if this query has filters.
 
-=head2 set_filter
+=method set_filter
 
 Sets the value for the specified filter.
 
@@ -67,6 +67,23 @@ has filters => (
         set_filter => 'set',
         has_filters => 'count'
     }
+);
+
+=attr index
+
+The index we will be querying.  Some search engine backends allow multiple
+indices and need this attribute.
+
+=method has_index
+
+Returns true if this query has an index specified.
+
+=cut
+
+has index => (
+    is => 'rw',
+    isa => 'Str',
+    predicate => 'has_index'
 );
 
 =attr order
