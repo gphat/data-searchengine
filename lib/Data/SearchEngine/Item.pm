@@ -2,38 +2,9 @@ package Data::SearchEngine::Item;
 use Moose;
 use MooseX::Storage;
 
+# ABSTRACT: An individual search result.
+
 with 'MooseX::Storage::Deferred';
-
-has id => (
-    is => 'rw',
-    isa => 'Str'
-);
-
-has score => (
-    is => 'rw',
-    isa => 'Num',
-    default => 0
-);
-
-has values => (
-    traits  => [ 'Hash' ],
-    is      => 'rw',
-    isa     => 'HashRef[Str|ArrayRef[Str]|Undef]',
-    default => sub { {} },
-    handles => {
-        keys        => 'keys',
-        get_value   => 'get',
-        set_value   => 'set',
-    },
-);
-
-__PACKAGE__->meta->make_immutable;
-
-1;
-
-=head1 NAME
-
-Data::SearchEngine::Item - An individual search result.
 
 =head1 SYNOPSIS
 
@@ -51,45 +22,61 @@ Data::SearchEngine::Item - An individual search result.
 An item represents an individual search result.  It's really just a glorified
 HashRef.
 
-=head1 ATTRIBUTES
-
-=head2 id
+=attr id
 
 A unique identifier for this item.
 
-=head2 values
+=cut
 
-The name value pairs for this item.
+has id => (
+    is => 'rw',
+    isa => 'Str'
+);
 
-=head2 score
+=attr score
 
 The score this item earned.
 
-=head1 METHODS
+=cut
 
-=head2 keys
+has score => (
+    is => 'rw',
+    isa => 'Num',
+    default => 0
+);
+
+=attr values
+
+The name value pairs for this item.
+
+=method keys
 
 Returns the keys from the values HashRef, e.g. a list of the value names for
 this item.
 
-=head2 get_value
+=method get_value
 
 Returns the value for the specified key for this item.
 
-=head2 set_value
+=method set_value
 
 Sets the value for the specified key for this item.
 
-=head1 AUTHOR
+=cut
 
-Cory G Watson, C<< <gphat at cpan.org> >>
+has values => (
+    traits  => [ 'Hash' ],
+    is      => 'rw',
+    isa     => 'HashRef[Str|ArrayRef[Str]|Undef]',
+    default => sub { {} },
+    handles => {
+        keys        => 'keys',
+        get_value   => 'get',
+        set_value   => 'set',
+    },
+);
 
-=head1 COPYRIGHT & LICENSE
+no Moose;
+__PACKAGE__->meta->make_immutable;
 
-Copyright 2009 Cory G Watson
-
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
-
-See http://dev.perl.org/licenses/ for more information.
+1;

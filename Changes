@@ -1,6 +1,10 @@
 Revision history for Data-SearchEngine
 
-0.21    2011-07-04
+{{$NEXT}}
+  * Convert README to README.mkdn
+  * Various tiny form and style fixes related to rejiggering docs for
+    Pod::Weaver
+  * Convert to Dist::Zilla and Pod::Weaver
   * Change 'order' to be a Str|HashRef for more complex sorting features.
 
 0.20    2011-07-03

@@ -1,28 +1,9 @@
 package Data::SearchEngine;
 use Moose::Role;
 
-our $VERSION = '0.20';
-
-has defaults => (
-    traits => [ 'Hash' ],
-    is => 'ro',
-    isa => 'HashRef',
-    handles => {
-        set_default => 'set',
-        get_default => 'get'
-    }
-);
+# ABSTRACT: A role for search engine abstraction.
 
 requires qw(search);
-
-no Moose::Role;
-1;
-
-__END__
-
-=head1 NAME
-
-Data::SearchEngine - A role for search engine abstraction.
 
 =head1 SYNOPSIS
 
@@ -60,6 +41,8 @@ The goal of Data::SearchEngine is to provide a simple, extensive set of
 classes and roles that you can use to wrap a search implementation.  The net
 result will be an easily swappable backend with a common set of features.
 
+=begin :prelude
+
 =head1 IMPLEMENTATION
 
 =head2 Step 1 - Extend the Query
@@ -77,23 +60,13 @@ implementation. You can find an example in L<Data::SearchEngine::Results>.
 
 !!!
 
-=head1 ATTRIBUTES
+=end :prelude
 
-=head2 defaults
+=attr defaults
 
 The C<defaults> attribute is a simple HashRef that backends may use to get
 default settings from the user.  The implementation of C<search> may then use
 these defaults when setting up instances of a search.
-
-=head1 METHODS 
-
-=head2 get_default ($key)
-
-Returns the value from C<defaults> (if any) for the specified key.
-
-=head2 set_default ($key, $value)
-
-Sets the value in C<defaults>.
 
 =head1 DIGESTS
 
@@ -103,17 +76,27 @@ a base64 MD5 digest to produce a unique key identifying this query.  You can
 then serialize the Result using L<MooseX::Storage> and store it under the
 digest of the Query for caching.
 
-=head1 AUTHOR
+=cut
 
-Cory G Watson, C<< <gphat at cpan.org> >>
+has defaults => (
+    traits => [ 'Hash' ],
+    is => 'ro',
+    isa => 'HashRef',
+    handles => {
+        set_default => 'set',
+        get_default => 'get'
+    }
+);
 
-=head1 COPYRIGHT & LICENSE
+=method get_default ($key)
 
-Copyright 2009 Cory G Watson
+Returns the value from C<defaults> (if any) for the specified key.
 
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
+=method set_default ($key, $value)
 
-See http://dev.perl.org/licenses/ for more information.
+Sets the value in C<defaults>.
 
+=cut
+
+no Moose::Role;
+1;

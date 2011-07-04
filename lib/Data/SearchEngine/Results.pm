@@ -2,42 +2,9 @@ package Data::SearchEngine::Results;
 use Moose;
 use MooseX::Storage;
 
+# ABSTRACT: Results of a Data::SearchEngine search
+
 with 'MooseX::Storage::Deferred';
-
-has elapsed => (
-    is => 'rw',
-    isa => 'Num'
-);
-has items => (
-    traits => [ 'Array' ],
-    is => 'rw',
-    isa => 'ArrayRef[Data::SearchEngine::Item]',
-    default => sub { [] },
-    handles => {
-        count   => 'count',
-        get     => 'get',
-        add     => 'push',
-    }
-);
-has query => (
-    is => 'ro',
-    isa => 'Data::SearchEngine::Query',
-    required => 1,
-);
-has pager => (
-    is => 'ro',
-    isa => 'Data::SearchEngine::Paginator'
-);
-
-__PACKAGE__->meta->make_immutable;
-
-1;
-
-__END__
-
-=head1 NAME
-
-Data::SearchEngine::Results - Results of a Data::SearchEngine serach
 
 =head1 SYNOPSIS
 
@@ -75,6 +42,8 @@ you are likely to use.
         return $results;
     }
 
+=begin :prelude
+
 =head1 SERIALIZATION
 
 This module uses L<MooseX::Storage::Deferred> to provide serialization.  You
@@ -84,56 +53,68 @@ may serialize it thusly:
   # ...
   my $results = Data::SearchEngine::Results->thaw($json, { format => 'JSON' });
 
-=head1 ATTRIBUTES
+=end :prelude
 
-=head2 add ($item)
-
-Add an item to this result.
-
-=head2 count
-
-Count of items in this result.
-
-=head2 elapsed
+=attr elapsed
 
 The time it took to complete this search.
 
-=head2 get ($n)
+=cut
 
-Get the nth item.
+has elapsed => (
+    is => 'rw',
+    isa => 'Num'
+);
 
-=head2 items
+=attr items
 
 The list of L<Data::SearchEngine::Item>s found for the query.
 
-=head2 pager
+=method add ($item)
 
-The L<Data::Page> for this result.
+Add an item to this result.
 
-=head2 query
+=method get ($n)
+
+Get the nth item.
+
+=cut
+
+has items => (
+    traits => [ 'Array' ],
+    is => 'rw',
+    isa => 'ArrayRef[Data::SearchEngine::Item]',
+    default => sub { [] },
+    handles => {
+        count   => 'count',
+        get     => 'get',
+        add     => 'push',
+    }
+);
+
+=attr query
 
 The L<Data::SearchEngine::Query> that yielded this Results object.
 
-=head1 METHODS
+=cut
 
-=head add
+has query => (
+    is => 'ro',
+    isa => 'Data::SearchEngine::Query',
+    required => 1,
+);
 
-Appends an Item onto the end of this Results object's item list.
+=attr pager
 
-=head get
+The L<Data::Page> for this result.
 
-Gets the item at the specified index.
+=cut
 
-=head1 AUTHOR
+has pager => (
+    is => 'ro',
+    isa => 'Data::SearchEngine::Paginator'
+);
 
-Cory G Watson, C<< <gphat at cpan.org> >>
+__PACKAGE__->meta->make_immutable;
 
-=head1 COPYRIGHT & LICENSE
-
-Copyright 2009 Cory G Watson
-
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
-
-See http://dev.perl.org/licenses/ for more information.
+1;

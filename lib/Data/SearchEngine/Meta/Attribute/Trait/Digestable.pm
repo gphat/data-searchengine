@@ -1,19 +1,7 @@
 package Data::SearchEngine::Meta::Attribute::Trait::Digestable;
 use Moose::Role;
 
-has digest_value => (
-    is => 'ro',
-    isa => 'CodeRef',
-    predicate => 'has_digest_value'
-);
-
-1;
-
-__END__
-
-=head1 NAME
-
-Data::SearchEngine::Meta::Attribute::Trait::Digestable - Digest flag & configuration
+# ABSTRACT: Digest flag & configuration
 
 =head1 SYNOPSIS
 
@@ -37,23 +25,18 @@ categories (or lack thereof) to have different digests.
 When computing it's digest, your query will now add the value of the category
 to the computation, thereby guaranteeing uniqueness!
 
-=head1 ATTRIBUTES
-
-=head2 digest_value
+=attr digest_value
 
 A coderef that will return a string identifying the value of this attribute
 for adding to the Query's digst.
 
-=head1 AUTHOR
+=cut
 
-Cory G Watson, C<< <gphat at cpan.org> >>
+has digest_value => (
+    is => 'ro',
+    isa => 'CodeRef',
+    predicate => 'has_digest_value'
+);
 
-=head1 COPYRIGHT & LICENSE
-
-Copyright 2009 Cory G Watson
-
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
-
-See http://dev.perl.org/licenses/ for more information.
+no Moose::Role;
+1;
