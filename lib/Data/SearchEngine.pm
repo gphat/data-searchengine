@@ -1,7 +1,17 @@
 package Data::SearchEngine;
 use Moose::Role;
 
-our $VERSION = '0.19';
+our $VERSION = '0.20';
+
+has defaults => (
+    traits => [ 'Hash' ],
+    is => 'ro',
+    isa => 'HashRef',
+    handles => {
+        set_default => 'set',
+        get_default => 'get'
+    }
+);
 
 requires qw(search);
 
@@ -50,6 +60,8 @@ The goal of Data::SearchEngine is to provide a simple, extensive set of
 classes and roles that you can use to wrap a search implementation.  The net
 result will be an easily swappable backend with a common set of features.
 
+=head1 IMPLEMENTATION
+
 =head2 Step 1 - Extend the Query
 
 If you have specific attributes that you need for your query, subclass the
@@ -64,6 +76,24 @@ implementation. You can find an example in L<Data::SearchEngine::Results>.
 =head2 Step 3 - Profit!!!
 
 !!!
+
+=head1 ATTRIBUTES
+
+=head2 defaults
+
+The C<defaults> attribute is a simple HashRef that backends may use to get
+default settings from the user.  The implementation of C<search> may then use
+these defaults when setting up instances of a search.
+
+=head1 METHODS 
+
+=head2 get_default ($key)
+
+Returns the value from C<defaults> (if any) for the specified key.
+
+=head2 set_default ($key, $value)
+
+Sets the value in C<defaults>.
 
 =head1 DIGESTS
 

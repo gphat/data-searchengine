@@ -1,5 +1,8 @@
 Revision history for Data-SearchEngine
 
+0.20    2011-07-03
+  * Add defaults to Data::SearchEngine
+
 0.19    2011-02-25
   * POD updates
 
