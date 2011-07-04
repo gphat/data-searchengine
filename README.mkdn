@@ -4,7 +4,7 @@ Data::SearchEngine - A role for search engine abstraction.
 
 # VERSION
 
-version 0.21
+version 0.22
 
 # SYNOPSIS
 
@@ -89,6 +89,11 @@ digest of the Query for caching.
 
 # ATTRIBUTES
 
+## debug
+
+An attribute that signals the backend should operate in a debugging mode.
+Please see the implementation module for specifics on how to use this.
+
 ## defaults
 
 The `defaults` attribute is a simple HashRef that backends may use to get
@@ -96,6 +101,10 @@ default settings from the user.  The implementation of `search` may then use
 these defaults when setting up instances of a search.
 
 # METHODS
+
+## is_debug
+
+Method for determining if the debug attribute has been set.
 
 ## get_default ($key)
 

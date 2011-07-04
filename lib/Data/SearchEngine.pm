@@ -84,14 +84,6 @@ For results that contain spellcheck data.
 
 =back
 
-=end :prelude
-
-=attr defaults
-
-The C<defaults> attribute is a simple HashRef that backends may use to get
-default settings from the user.  The implementation of C<search> may then use
-these defaults when setting up instances of a search.
-
 =head1 DIGESTS
 
 Data::SearchEngine provides a Digestable trait that can be applied to
@@ -99,6 +91,33 @@ attributes of C<Query>.  Attributes with this trait will be added to
 a base64 MD5 digest to produce a unique key identifying this query.  You can
 then serialize the Result using L<MooseX::Storage> and store it under the
 digest of the Query for caching.
+
+=cut
+
+=end :prelude
+
+=attr debug
+
+An attribute that signals the backend should operate in a debugging mode.
+Please see the implementation module for specifics on how to use this.
+
+=method is_debug
+
+Method for determining if the debug attribute has been set.
+
+=cut
+
+has debug => (
+    is => 'rw',
+    isa => 'Any',
+    predicate => 'is_debug'
+);
+
+=attr defaults
+
+The C<defaults> attribute is a simple HashRef that backends may use to get
+default settings from the user.  The implementation of C<search> may then use
+these defaults when setting up instances of a search.
 
 =cut
 
