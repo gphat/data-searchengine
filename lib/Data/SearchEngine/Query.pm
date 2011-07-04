@@ -81,6 +81,7 @@ Returns true if this query has an index specified.
 =cut
 
 has index => (
+    traits => [qw(Digestable)],
     is => 'rw',
     isa => 'Str',
     predicate => 'has_index'
@@ -110,7 +111,7 @@ value as C<query>.
 
 has original_query => (
     traits => [qw(Digestable)],
-    is => 'ro',
+    is => 'rw',
     isa => 'Str|Undef',
     lazy => 1,
     default => sub { my $self = shift; return $self->query }
@@ -123,6 +124,7 @@ Which page of results to show.
 =cut
 
 has page => (
+    traits => [qw(Digestable)],
     is => 'ro',
     isa => 'Int',
     default => 1
@@ -130,7 +132,11 @@ has page => (
 
 =attr query
 
-The query string to search for.
+The query string to search for.  This attribute may be a Str, ArrayRef or a
+HashRef.  Some backends (like ElasticSearch) require complex data structures
+to perform searches and need a HashRef for their queries. B<NOTE:> It is
+advised that you set C<original_query> to a string so that the results
+object has a clean string to show end-users.
 
 =method has_query
 
@@ -141,8 +147,26 @@ Returns true if this Query has a query string.
 has query => (
     traits => [qw(Digestable)],
     is => 'rw',
-    isa => 'Str',
+    isa => 'Str|HashRef|ArrayRef',
     predicate => 'has_query'
+);
+
+=attr type
+
+The type of query to use.  Some backends (Solr and ElasticSearch) will use a
+query type, if specified.
+
+=method has_type
+
+Returns true if this Query has a type set.
+
+=cut
+
+has type => (
+    traits => [qw(Digestable)],
+    is => 'rw',
+    isa => 'Str',
+    predicate => 'has_type'
 );
 
 =method digest

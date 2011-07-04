@@ -8,6 +8,9 @@ Revision history for Data-SearchEngine
   * Change 'order' to be a Str|HashRef for more complex sorting features.
   * Add index attribute to Query
   * POD clarifications wrt subclassing and such
+  * Add type to Query
+  * Add Digestable trait to a few attributes that were missing it.
+  * Make Query's original_query rw
 
 0.20    2011-07-03
   * Add defaults to Data::SearchEngine
