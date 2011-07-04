@@ -9,14 +9,10 @@ with 'MooseX::Storage::Deferred';
 =head1 SYNOPSIS
 
 The Results object holds the list of items found during a query.  They are
-usually sorted by a score.  This object provides some standard attributes
-you are likely to use.
+usually sorted by a score. This object provides some standard attributes you
+are likely to use.
 
-    use Data::SearchEngine::Item;
-    use Data::SearchEngine::Results;
-    use Time::HiRes;
-
-    sub query {
+    sub search {
 
         # boring, search specific implementation
         

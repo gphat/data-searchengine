@@ -7,6 +7,7 @@ Revision history for Data-SearchEngine
   * Convert to Dist::Zilla and Pod::Weaver
   * Change 'order' to be a Str|HashRef for more complex sorting features.
   * Add index attribute to Query
+  * POD clarifications wrt subclassing and such
 
 0.20    2011-07-03
   * Add defaults to Data::SearchEngine

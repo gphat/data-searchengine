@@ -45,20 +45,44 @@ result will be an easily swappable backend with a common set of features.
 
 =head1 IMPLEMENTATION
 
-=head2 Step 1 - Extend the Query
+B<NOTE:> You should avoid adding new attributes or subclassing
+Data::SearchEngine classes unless otherwise noted. Doing so will break
+compatability with future releases and obviate the whole reason that
+Data::SearchEngine exists.  The only exception is the Results class (step 3
+below) which should B<only> be a subclass with roles applied, no new attributes
+or methods.
 
-If you have specific attributes that you need for your query, subclass the
-L<Data::SearchEngine::Query> object and add the attributes.  This part is
-optional.
+=head2 Step 1 - Wrap a search implementation
 
-=head2 Step 2 - Wrap a search implementation
+As shown in the SYNOPSIS, use the L<Data::SearchEngine> role in a class that
+wraps your search implementation.  Implement a C<search> method that takes a
+L<Data::SearchEngine::Query> object and returns a
+L<Data::SearchEngine::Results> object.
 
-Next use the L<Data::SearchEngine> role in a class that wraps your search
-implementation. You can find an example in L<Data::SearchEngine::Results>.
+=head2 Step 2 - Use Other Roles
 
-=head2 Step 3 - Profit!!!
+If your library includes functionality other than searching, such as indexing
+new documents or removing them, you may include the 
+L<Data::SearchEngine::Modifiable> role.  If you have other suggestions for
+roles please drop me a line!
 
-!!!
+=head2 Step 3 - Extend the Results
+
+The results object may not have quite enough pieces for your implementation.
+If not, you can C<extend> L<Data::SearchEngine::Results> and add some other
+roles:
+
+=over 4
+
+=item Data::SearchEngine::Results::Faceted
+
+For results that contain faceted data.
+
+=item Data::SearchEngine::Results::Spellcheck
+
+For results that contain spellcheck data.
+
+=back
 
 =end :prelude
 
