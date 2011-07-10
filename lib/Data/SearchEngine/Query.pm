@@ -83,7 +83,7 @@ Returns true if this query has an index specified.
 has index => (
     traits => [qw(Digestable)],
     is => 'rw',
-    isa => 'Str',
+    isa => 'Str|ArrayRef[Str]',
     predicate => 'has_index'
 );
 

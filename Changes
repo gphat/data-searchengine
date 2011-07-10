@@ -1,6 +1,10 @@
 Revision history for Data-SearchEngine
 
 {{$NEXT}}
+    * Change type of index to Str|ArrayRef[Str], allowing for backends that
+      use multiple indices.
+
+0.22    2011-07-04
     * Add a debug attribute for backends to use
 
 0.21    2011-07-04
