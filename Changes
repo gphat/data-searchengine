@@ -1,6 +1,8 @@
 Revision history for Data-SearchEngine
 
 {{$NEXT}}
+    * Add facets to Query
+    * Change filters type to HashRef[Any] for more complex backends.
     * Change type of index to Str|ArrayRef[Str], allowing for backends that
       use multiple indices.
 

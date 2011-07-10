@@ -97,7 +97,7 @@ Sets the value for the specified filter.
 has filters => (
     traits => [ 'Hash', 'Digestable' ],
     is => 'rw',
-    isa => 'HashRef[Str]',
+    isa => 'HashRef[Any]',
     default => sub { {} },
     handles => {
         filter_names=> 'keys',
