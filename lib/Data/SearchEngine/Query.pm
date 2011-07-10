@@ -32,6 +32,44 @@ has count => (
     default => 10
 );
 
+=attr facets
+
+A HashRef of facets used with the query.  The key should be the facet name and
+the value is the facet's value.  Consult the documentation for your backend to
+see how this is used (if at all).
+
+=method facet_names
+
+Get the names of all facets.
+
+=method get_facet
+
+Get the value for the specified facet.
+
+=method has_facets
+
+Predicate that returns true if this Query has any facets.  Actually, it
+returns the count but it does the same thing.
+
+=method set_facet
+
+Set the value for the specified facet.
+
+=cut
+
+has facets => (
+    traits => [ 'Hash', 'Digestable' ],
+    is => 'rw',
+    isa => 'HashRef[Any]',
+    default => sub { {} },
+    handles => {
+        facet_names => 'keys',
+        get_facet => 'get',
+        set_facet => 'set',
+        has_facets => 'count'
+    }
+);
+
 =attr filters
 
 A HashRef of filters used with the query.  The key should be the filter name
