@@ -18,7 +18,7 @@ are likely to use.
         
         my $results = Data::SearchEngine::Results->new(
             query       => $query
-            pager       => Data::Page->new(...)
+            pager       => Data::SearchEngine::Paginator->new(#...) # Data::Paginator subclass
         );
 
         my $start = time;

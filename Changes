@@ -1,6 +1,9 @@
 Revision history for Data-SearchEngine
 
 {{$NEXT}}
+    * Fix bug in Synopsis (jshirley)
+
+0.23 Jul 10 2011
     * Add facets to Query
     * Change filters type to HashRef[Any] for more complex backends.
     * Change type of index to Str|ArrayRef[Str], allowing for backends that
