@@ -6,16 +6,20 @@ use Moose::Role;
 =head1 SYNOPSIS
 
     package Data::SeachEngine::Foo;
+    use Moose;
 
     with 'Data::SearchEngine::Results::Spellcheck';
     
     sub search {
         # do stuff
+        my $results = Data::SearchEngine::Results->new;
+        
         $results->set_spell_suggestion('popuar', 
-          Data::SearchEngine::Results::Spellcheck::Suggestion->new(
-            word => 'popular',  # the suggested replacement
-            frequency => 12     # optional, how often it occurs in the index
-          );
+            Data::SearchEngine::Results::Spellcheck::Suggestion->new(
+                word => 'popular',  # the suggested replacement
+                frequency => 12     # optional, how often it occurs in the index
+            )
+        );
     }
 
 =head1 DESCRIPTION

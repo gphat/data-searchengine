@@ -3,7 +3,7 @@ use Moose::Role;
 
 # ABSTRACT: Digest flag & configuration
 
-=head1 SYNOPSIS
+=head1 DESCRIPTION
 
 If a L<Data::SearchEngine::Query> attribute has this meta-attribute, then it
 will be added to the digest that identifies the uniqueness of a Query.

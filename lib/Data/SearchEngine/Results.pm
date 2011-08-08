@@ -6,27 +6,35 @@ use MooseX::Storage;
 
 with 'MooseX::Storage::Deferred';
 
-=head1 SYNOPSIS
+=head1 DESCRIPTION
 
 The Results object holds the list of items found during a query.  They are
 usually sorted by a score. This object provides some standard attributes you
 are likely to use.
 
+=head1 SYNOPSIS
+
+    # An example search implementation
+
     sub search {
+        my ($self, $query) = @_;
 
         # boring, search specific implementation
         
         my $results = Data::SearchEngine::Results->new(
-            query       => $query
-            pager       => Data::SearchEngine::Paginator->new(#...) # Data::Paginator subclass
+            query       => $query,
+            pager       => Data::SearchEngine::Paginator->new # Data::Paginator subclass
         );
 
+        my @sorted_products; # fill with a search or something
+        my $scores; # fill with search scores
+
         my $start = time;
-        foreach $product (@sorted_products) {
+        foreach my $product (@sorted_products) {
             my $item = Data::SearchEngine::Item->new(
                 id      => $product->id,            # unique product id
                 score   => $scores->{$product->id}  # make your own scores
-            ));
+            );
 
             $item->set_value('url', 'http://example.com/product/'.$product->id);
             $item->set_value('price', $product->price);

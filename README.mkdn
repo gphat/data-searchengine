@@ -4,11 +4,12 @@ Data::SearchEngine - A role for search engine abstraction.
 
 # VERSION
 
-version 0.23
+version 0.24
 
 # SYNOPSIS
 
   package Data::SearchEngine::MySearch;
+  use Moose;
 
   with 'Data::SearchEngine';
 
@@ -21,6 +22,8 @@ version 0.23
         query => $query,
         pager => # ... make a Data::Page
     );
+
+    my @hits; # Populate with hits somehow
 
     foreach my $hit (@hits) {
         $result->add(Data::SearchEngine::Item->new(

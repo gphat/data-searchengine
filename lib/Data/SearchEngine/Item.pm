@@ -8,7 +8,9 @@ with 'MooseX::Storage::Deferred';
 
 =head1 SYNOPSIS
 
-  $result->add(Data::SearchEngine::Item->new(
+  my $results = Data::SearchEngine::Results->new;
+
+  $results->add(Data::SearchEngine::Item->new(
     id => 'SKU',
     values => {
         name => 'Foobar',

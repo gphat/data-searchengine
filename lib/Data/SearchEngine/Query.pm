@@ -9,7 +9,7 @@ with 'MooseX::Storage::Deferred';
 use Data::SearchEngine::Meta::Attribute::Trait::Digestable;
 use Digest::MD5;
 
-=head1 SYNOPSIS
+=head1 DESCRIPTION
 
 The query object has some common attributes one would expect when performing
 a search. It has the added benefit of producing a digest that can be used

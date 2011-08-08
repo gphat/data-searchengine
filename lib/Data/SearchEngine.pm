@@ -8,6 +8,7 @@ requires qw(search);
 =head1 SYNOPSIS
 
   package Data::SearchEngine::MySearch;
+  use Moose;
 
   with 'Data::SearchEngine';
 
@@ -20,6 +21,8 @@ requires qw(search);
         query => $query,
         pager => # ... make a Data::Page
     );
+
+    my @hits; # Populate with hits somehow
 
     foreach my $hit (@hits) {
         $result->add(Data::SearchEngine::Item->new(

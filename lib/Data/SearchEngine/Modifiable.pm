@@ -3,7 +3,7 @@ use Moose::Role;
 
 # ABSTRACT: A role for search engines with an updateable index.
 
-=head1 SYNOPSIS
+=head1 DESCRIPTION
 
 This is an add-on role that is used in conjunction with L<Data::SearchEngine>
 when wrapping an index that can be updated.  Since some indexes may be read
