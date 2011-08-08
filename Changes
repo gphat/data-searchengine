@@ -1,6 +1,8 @@
 Revision history for Data-SearchEngine
 
 {{$NEXT}}
+
+0.24 Aug 8 2011
     * Fix bug in Synopsis (jshirley)
 
 0.23 Jul 10 2011
