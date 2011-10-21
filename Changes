@@ -1,6 +1,7 @@
 Revision history for Data-SearchEngine
 
 {{$NEXT}}
+    * Relax type constraint on Item::values to HashRef (user beware!)
 
 0.24 Aug 8 2011
     * Fix bug in Synopsis (jshirley)

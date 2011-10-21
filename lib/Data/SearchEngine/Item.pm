@@ -69,7 +69,7 @@ Sets the value for the specified key for this item.
 has values => (
     traits  => [ 'Hash' ],
     is      => 'rw',
-    isa     => 'HashRef[Str|ArrayRef[Str]|Undef]',
+    isa     => 'HashRef',
     default => sub { {} },
     handles => {
         keys        => 'keys',
