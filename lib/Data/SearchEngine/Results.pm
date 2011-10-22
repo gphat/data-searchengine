@@ -121,15 +121,15 @@ has pager => (
 
 =attr raw
 
-A raw hashref that a search backend may fill with the "raw" response it
+An attribute that a search backend may fill with the "raw" response it
 received.  This is useful for retrieving engine-specific information such
-as debugging or tracing information.
+as debugging or tracing information. Type is C<Any>.
 
 =cut
 
 has raw => (
     is => 'ro',
-    isa => 'HashRef'
+    isa => 'Any'
 );
 
 __PACKAGE__->meta->make_immutable;
