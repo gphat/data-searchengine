@@ -25,7 +25,8 @@ my $query3 = Data::SearchEngine::Query->new(
     page => 1,
     count => 12,
     original_query => 'product',
-    query => 'a product'
+    query => 'a product',
+    debug => 'foo'
 );
 
 cmp_ok($query3->original_query, 'ne', $query3->query, 'original_query ne query');
@@ -33,5 +34,7 @@ cmp_ok($query3->original_query, 'ne', $query3->query, 'original_query ne query')
 $query3->set_filter('foo', 'bar');
 cmp_ok($query3->get_filter('foo'), 'eq', 'bar', 'get_filter');
 ok($query3->has_filter_like(sub { /^fo/ }), 'has_filter_like');
+
+ok($query3->has_debug, 'has_debug');
 
 done_testing;
