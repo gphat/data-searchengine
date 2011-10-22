@@ -119,6 +119,19 @@ has pager => (
     isa => 'Data::SearchEngine::Paginator'
 );
 
+=attr raw
+
+A raw hashref that a search backend may fill with the "raw" response it
+received.  This is useful for retrieving engine-specific information such
+as debugging or tracing information.
+
+=cut
+
+has raw => (
+    is => 'ro',
+    isa => 'HashRef'
+);
+
 __PACKAGE__->meta->make_immutable;
 
 1;

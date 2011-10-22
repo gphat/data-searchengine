@@ -32,6 +32,25 @@ has count => (
     default => 10
 );
 
+=attr debug
+
+A string value denoting that this query should include debugging information
+in the response.  Uses a string as the type because some search indexes
+allow you to specify the type of debugging.  For those that just use a flag,
+the predicate should be checked so that any true value results in debugging.
+
+=method has_debug
+
+Returns true if this Query has a value for debug.
+
+=cut
+
+has debug => (
+    is => 'rw',
+    isa => 'Str',
+    predicate => 'has_debug'
+);
+
 =attr facets
 
 A HashRef of facets used with the query.  The key should be the facet name and

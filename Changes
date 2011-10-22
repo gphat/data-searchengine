@@ -1,6 +1,8 @@
 Revision history for Data-SearchEngine
 
 {{$NEXT}}
+    * Add debug attribute to Query
+    * Add raw attribute to Results
 
 0.25 Oct 21 2011
     * Relax type constraint on Item::values to HashRef (user beware!)
