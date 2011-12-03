@@ -3,7 +3,7 @@ use Moose::Role;
 
 # ABSTRACT: A role for search engine abstraction.
 
-requires qw(search);
+requires qw(find_by_id search);
 
 =head1 SYNOPSIS
 
