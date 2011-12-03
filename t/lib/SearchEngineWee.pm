@@ -100,6 +100,8 @@ sub search {
     );
 }
 
+sub find_by_id {}
+
 sub remove {
     my ($self, $prod) = @_;
 
