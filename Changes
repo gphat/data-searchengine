@@ -1,6 +1,8 @@
 Revision history for Data-SearchEngine
 
 {{$NEXT}}
+
+0.29 Dec 4 2011
     * Add clone method to Item.
 
 0.28 Dec 3 2011
