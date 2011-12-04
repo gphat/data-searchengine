@@ -4,7 +4,7 @@ use MooseX::Storage;
 
 # ABSTRACT: An individual search result.
 
-with 'MooseX::Storage::Deferred';
+with qw(MooseX::Storage::Deferred MooseX::Clone);
 
 =head1 SYNOPSIS
 
@@ -50,6 +50,10 @@ has score => (
 =attr values
 
 The name value pairs for this item.
+
+=method clone
+
+Clone this Item.
 
 =method keys
 

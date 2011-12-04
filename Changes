@@ -1,6 +1,7 @@
 Revision history for Data-SearchEngine
 
 {{$NEXT}}
+    * Add clone method to Item.
 
 0.28 Dec 3 2011
     * Add find_by_id
