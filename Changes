@@ -1,6 +1,7 @@
 Revision history for Data-SearchEngine
 
 {{$NEXT}}
+    * Just kidding, clone was a bad idea.
 
 0.29 Dec 4 2011
     * Add clone method to Item.
