@@ -53,7 +53,7 @@ are likely to use.
 This module uses L<MooseX::Storage::Deferred> to provide serialization.  You
 may serialize it thusly:
 
-  my $json = $results->freeze({ format => 'JSON' };
+  my $json = $results->freeze({ format => 'JSON' });
   # ...
   my $results = Data::SearchEngine::Results->thaw($json, { format => 'JSON' });
 
