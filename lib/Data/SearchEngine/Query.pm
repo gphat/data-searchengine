@@ -153,7 +153,7 @@ The order in which the results should be sorted.
 has order => (
     traits => [qw(Digestable)],
     is => 'rw',
-    isa => 'Str|HashRef',
+    isa => 'Str|ArrayRef|HashRef',
     predicate => 'has_order'
 );
 
